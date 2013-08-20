@@ -10,7 +10,7 @@ These scripts can be run using the following syntax:
 
 `curl https://raw.github.com/coreybutler/servers/master/<script> | sh`
 
-**Make sure you replace <script> with the appropriate script name!**
+**Make sure you replace &lt;script&gt; with the appropriate script name!**
 
 If this doesn't work, you may need higher level privileges. Assuming you're
 authorized, you can use the following instead:

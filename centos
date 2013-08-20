@@ -7,9 +7,15 @@ yum update
 yum install -y git wget make openssl openssl-devel
 
 # Create common directories
-mkdir /usr/src/SOFTWARE
-mkdir /usr/src/SCRIPTS
-mkdir /BACKUP
+if [ ! -d "/usr/src/SOFTWARE" ]; then
+  mkdir /usr/src/SOFTWARE
+fi
+if [ ! -d "/usr/src/SCRIPTS" ]; then
+  mkdir /usr/src/SCRIPTS
+fi
+if [ ! -d "/BACKUP" ]; then
+  mkdir /BACKUP
+fi
 
 # Modify the startup script, add aliases and exports
 cp /etc/bashrc /etc/bashrc.original

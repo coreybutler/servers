@@ -1,6 +1,8 @@
 cd /usr/src/SOFTWARE
-set v=0.10.16
+set v="0.10.16"
 set n=node-v$v
+clear
+echo "Installing $n"
 wget http://nodejs.org/dist/latest/$n.tar.gz
 tar -zxvf $n.tar.gz
 cd $n

@@ -1,3 +1,7 @@
+###################################################
+# CentOS initialization script for fresh installs #
+###################################################
+
 # Update with required software
 yum update
 yum install -y git wget make openssl openssl-devel

@@ -1,11 +1,14 @@
+yum install gcc-c++
 cd /usr/src/SOFTWARE
 v="0.10.16"
 n="node-v$v"
 clear
-echo "Installing $n"
+echo "Downloading $n"
 wget http://nodejs.org/dist/latest/$n.tar.gz
 tar -zxvf $n.tar.gz
 cd $n
+clear
+"Installing $n"
 ./configure
 make
 make install

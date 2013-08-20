@@ -12,3 +12,6 @@ clear
 ./configure
 make
 make install
+clear
+echo "Node v$v Installation Complete"
+node -v

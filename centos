@@ -44,3 +44,6 @@ echo "alias pscpu='ps auxf | sort -nr -k 3'" >> /etc/bashrc
 echo "alias pscpu10='ps auxf | sort -nr -k 3 | head -10'" >> /etc/bashrc
 echo "alias cpuinfo='lscpu'" >> /etc/bashrc
 echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bashrc
+
+clear
+echo "You may need to re-login to use the new aliases."

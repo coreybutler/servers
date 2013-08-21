@@ -1,4 +1,4 @@
-yum install gcc-c++
+yum install -y gcc-c++
 cd /usr/src/SOFTWARE
 v="0.10.16"
 n="node-v$v"

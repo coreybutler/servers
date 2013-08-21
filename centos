@@ -3,7 +3,7 @@
 ###################################################
 
 # Update with required software
-yum update
+yum update -y
 yum install -y git wget make openssl openssl-devel
 
 # Create common directories

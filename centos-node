@@ -1,6 +1,6 @@
 yum install -y gcc-c++
 cd /usr/src/SOFTWARE
-v="0.10.16"
+v="0.10.17"
 n="node-v$v"
 clear
 echo "Downloading $n"

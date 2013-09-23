@@ -1,0 +1,14 @@
+# Get CentOS Version
+str=`cat /etc/redhat-release`
+arr=(`echo $str | cut -d " "  --output-delimiter=" " -f 1-`)
+_version=(`echo ${arr[2]} | cut -d "." --output-delimiter=" " -f 1-`)
+version=${_version[0]}
+
+# Create the yum repo
+echo "[nginx]" > /etc/yum.repos.d/nginx.repo
+echo "name=nginx repo" >> /etc/yum.repos.d/nginx.repo
+echo "baseurl=http://nginx.org/packages/centos/$version/\$basearch/" >> /etc/yum.repos.d/nginx.repo
+ecoh "gpgcheck=0" >> /etc/yum.repos.d/nginx.repo
+echo "enabled=1" >> /etc/yum.repos.d/nginx.repo
+
+yum install -y nginx

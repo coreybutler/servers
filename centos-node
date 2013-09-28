@@ -1,17 +1,15 @@
 yum install -y gcc-c++
 cd /usr/src/SOFTWARE
-v="0.10.17"
-n="node-v$v"
 clear
-echo "Downloading $n"
-wget http://nodejs.org/dist/latest/$n.tar.gz
-tar -zxvf $n.tar.gz
-cd $n
+echo "Downloading Node.js"
+wget http://nodejs.org/dist/node-latest.tar.gz
+tar -zxvf node-latest.tar.gz
+cd $(ls -d node-* | tail -1)
 clear
-"Installing $n"
+"Installing Node.js"
 ./configure
 make
 make install
 clear
-echo "Node v$v Installation Complete"
+echo "Node.js Installation Complete"
 node -v

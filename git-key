@@ -1,6 +1,6 @@
 clear
 echo "Acquiring git-key installer..."
-curl https://raw.github.com/coreybutler/servers/master/lib/git-key > /tmp/git-key
-chmod +x /tmp/git-key
+curl https://raw.github.com/coreybutler/servers/master/lib/git-key > /usr/src/SCRIPTS/gitkey
+chmod +x /usr/src/SCRIPTS/gitkey
 clear
-/tmp/git-key
+echo "Type gitkey to create a new SSH certificate for git."

@@ -1,0 +1,3 @@
+yum install -y git make
+cd /usr/src/SOFTWARE
+git clone git://anongit.freedesktop.org/systemd/systemd

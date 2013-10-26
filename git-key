@@ -15,7 +15,7 @@ if [ $# -eq 0 ]
         [Yy]* ) break;;
         [Nn]* ) exit;;
         * ) echo "Please answer (y)es or (n)o.";;
-    done
+    done;
   else
     email = $1
 fi

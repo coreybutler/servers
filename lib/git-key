@@ -60,10 +60,10 @@ while true; do
         read -p "BitBucket Password: " pass
         clear
         echo "Adding SSH certificate to BitBucket for $user..."
-        curl -X POST --user $user:$pass https://bitbucket.org/api/1.0/users/$user/ssh-keys --data-urlencode "accountname=$user&label=$(hostname) server&key=$keycontent"
+        curl -X POST --user $user:$pass https://bitbucket.org/api/1.0/users/$user/ssh-keys --data-urlencode "accountname=$user" --data-urlencode "label=$(hostname) server" --data-urlencode "key=$keycontent"
         clear
+        echo "Testing BitBucket connection with new SSH key..."
         ssh -T git@bitbucket.org
-        echo "accountname=$user&label=$(hostname) server&key=$keycontent" 
         break;;
     * ) echo "Please select a service:"
         echo "[0] None"

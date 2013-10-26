@@ -51,8 +51,7 @@ echo $keycontent
 
 while true; do
   case $svc in
-    0 ) clear
-        echo "The key is available at $sshfile"
+    0 ) echo "The key is available at ~/.ssh/$sshfile"
         break;;
     1 ) read -p "Github Username: " user
         read -p "Github Password: " pass

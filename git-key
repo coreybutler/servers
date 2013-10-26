@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Make sure curl is available
+clear
+echo "Installing/updating curl if necessary..."
+yum install -y curl > /dev/null
+
+# Identify email account to associate with the key
+if [ $# -eq 0 ]
+  then
+    read -p "Email address to associate with the git SSH key:" email
+    while true; do
+      read -p "Is $email correct?" yn
+      case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer (y)es or (n)o.";;
+    done
+  else
+    email = $1
+fi
+clear
+
+# Create a new git SSH cert for use with external services.
+clear
+echo "Creating certificate"
+cd ~/.ssh
+#ssh-keygen -t rsa -C
+echo "$email"

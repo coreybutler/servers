@@ -11,5 +11,5 @@ clear
 make
 make install
 clear
-echo "Node.js Installation Complete"
+echo "Node.js Installation Complete."
 node -v

@@ -42,7 +42,7 @@ echo "Which remote git service will this certificate be used with?"
 echo "[0] None"
 echo "[1] Github"
 echo "[2] BitBucket"
-read svc
+read -p "Service: " svc
 
 # Read the key from its file
 keycontent=$(~/.ssh/$sshfile)
@@ -51,6 +51,9 @@ echo $keycontent
 
 while true; do
   case $svc in
+    0 ) clear
+        echo "The key is available at $sshfile"
+        break;;
     1 ) read -p "Github Username: " user
         read -p "Github Password: " pass
         clear

@@ -34,7 +34,7 @@ clear
 echo "Creating certificate"
 cd ~/.ssh
 ssh-keygen -t rsa -C "$email" -N "" -f ~/.ssh/$sshfile
-ssh-add $sshfile
+ssh-add ~/.ssh/$sshfile
 clear
 
 # Optionally add the certificate to a remote git account
@@ -45,7 +45,7 @@ echo "[2] BitBucket"
 read -p "Service: " svc
 
 # Read the key from its file
-keycontent=$(~/.ssh/$sshfile)
+keycontent=$(<~/.ssh/$sshfile)
 
 echo $keycontent
 

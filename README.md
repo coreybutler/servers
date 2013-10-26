@@ -31,4 +31,7 @@ Installs a special wizard to add SSH keys for git projects. This
 will generate an SSH key and optionally add it to a Github or BitBucket
 machine account.
 
+Once this script is installed, it **does not** need to be run via `curl`.
+
+
  

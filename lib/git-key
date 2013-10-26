@@ -47,11 +47,9 @@ read -p "Service: " svc
 # Read the key from its file
 keycontent=$(<~/.ssh/$sshfile.pub)
 
-echo $keycontent
-
 while true; do
   case $svc in
-    0 ) echo "The key is available at ~/.ssh/$sshfile"
+    0 ) echo "The public key is available at ~/.ssh/$sshfile.pub"
         break;;
     1 ) read -p "Github Username: " user
         read -p "Github Password: " pass
@@ -62,8 +60,8 @@ while true; do
         read -p "BitBucket Password: " pass
         clear
         echo "Adding SSH certificate to BitBucket for $user..."
-        echo $keycontent
-        #curl -X --user $user:$pass https://bitbucket.org/api/1.0/users/$user/ssh-keys --data-urlencode "accountname=$user&key=$keycontent"
+        echo "accountname=$user&label=$(hostname)&key=$keycontent"
+        #curl -X --user $user:$pass https://bitbucket.org/api/1.0/users/$user/ssh-keys --data-urlencode "accountname=$user&label=$(hostname)&key=$keycontent"
         break;;
     * ) echo "Please select a service:"
         echo "[0] None"

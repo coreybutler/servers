@@ -47,6 +47,8 @@ read svc
 # Read the key from its file
 keycontent=$(~/.ssh/$sshfile)
 
+echo $keycontent
+
 while true; do
   case $svc in
     1 ) read -p "Github Username: " user

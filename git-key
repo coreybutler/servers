@@ -9,14 +9,14 @@ yum install -y curl > /dev/null
 if [ $# -eq 0 ]
   then
     read -p "Email address to associate with the git SSH key:" email
-    while true; do
+    #while true; do
       read -p "Is $email correct?" yn
       case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
         * ) echo "Please answer (y)es or (n)o.";;
       esac
-    done
+    #done
   else
     email = $1
 fi

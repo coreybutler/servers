@@ -26,4 +26,4 @@ clear
 clear
 echo "Creating certificate"
 cd ~/.ssh
-ssh-keygen -t rsa -C "$email"
+ssh-keygen -t rsa -C "$email" < echo -ne '\n'

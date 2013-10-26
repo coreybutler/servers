@@ -8,9 +8,9 @@ yum install -y curl > /dev/null
 # Identify email account to associate with the key
 if [ $# -eq 0 ]
   then
-    read -p "Email address to associate with the git SSH key:" email 
+    read -p "Email address to associate with the git SSH key: " email 
     while true; do
-      read -p "Is $email correct? (y/n)" yn
+      read -p "Is $email correct? (y/n) " yn
       case $yn in
         [Yy]* ) break;;
         [Nn]* ) exit;;
@@ -26,5 +26,4 @@ clear
 clear
 echo "Creating certificate"
 cd ~/.ssh
-#ssh-keygen -t rsa -C
-echo "$email"
+ssh-keygen -t rsa -C "$email"

@@ -62,9 +62,9 @@ while true; do
         echo "Adding SSH certificate to BitBucket for $user..."
         echo 'curl -X POST --user $user:$pass https://bitbucket.org/api/1.0/users/$user/ssh-keys --data-urlencode "accountname=$user&label=$(hostname) server&key=$keycontent"'
         exit;;
-        clear
-        ssh -T git@bitbucket.org
-        break;;
+        #clear
+        #ssh -T git@bitbucket.org
+        #break;;
     * ) echo "Please select a service:"
         echo "[0] None"
         echo "[1] Github"

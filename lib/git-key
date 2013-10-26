@@ -22,11 +22,11 @@ if [ $# -eq 0 ]
 fi
 clear
 
+
+sshfile="id_rsa"
 if [ $# -eq 1 ]
   then
-    sshfile = "id_rsa"
-  else
-    sshfile = $2
+    sshfile=$2
 fi
 
 # Create a new git SSH cert for use with external services.

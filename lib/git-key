@@ -45,7 +45,7 @@ echo "[2] BitBucket"
 read -p "Service: " svc
 
 # Read the key from its file
-keycontent=$(<~/.ssh/$sshfile)
+keycontent=$(<~/.ssh/$sshfile.pub)
 
 echo $keycontent
 

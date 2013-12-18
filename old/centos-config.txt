@@ -1,0 +1,48 @@
+#########################
+#       SETTINGS        #
+#########################
+TERM=linux
+export TERM
+export IP=`/sbin/ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`
+export GATEWAY=`/bin/netstat -rn | grep UG | cut -d: -f2 | awk '{ print $2}'`
+export BACKUP=/usr/src/BACKUP
+export SOFTWARE=/usr/src/SOFTWARE
+export DOWNLOADS=/usr/src/DOWNLOADS
+export SCRIPTS=/usr/src/SCRIPTS
+export NODE_PATH=/opt/node/bin
+export PATH=$PATH:/usr/src/SCRIPTS:/usr/local/bin
+
+alias bkp='cd $BACKUP'
+alias soft='cd $SOFTWARE'
+alias web='cd /web/websites'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias md='mkdir -p'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias nd='sudo node'
+alias du='du -kh'
+alias df='df -kTh'
+alias ll="ls -l --group-directories-first"
+alias ls='ls -hF --color'  # add colors for filetype recognition
+alias la='ls -Al'          # show hidden files
+alias lx='ls -lXB'         # sort by extension
+alias lk='ls -lSr'         # sort by size, biggest last
+alias lc='ls -ltcr'        # sort by and show change time, most recent last
+alias lu='ls -ltur'        # sort by and show access time, most recent last
+alias lt='ls -ltr'         # sort by date, most recent last
+alias lm='ls -al |more'    # pipe through 'more'
+alias lr='ls -lR'          # recursive ls
+alias tree='tree -Csu'     # nice alternative to 'recursive ls'
+alias home='cd $home'
+alias dl='cd $DOWNLOADS'
+alias flushdns='/sbin/service nscd restart'
+alias scripts='cd $SCRIPTS'
+alias ngc='nano /etc/nginx/nginx.conf'
+alias nodev='NODE_ENV=dev node '
+alias nodep='NODE_ENV=prod node '
+alias nodegrep='ps -ef | grep node'
+alias ngrep='ps -ef | grep node'
+alias k='kill -9 '

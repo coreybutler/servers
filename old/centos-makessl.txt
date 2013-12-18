@@ -1,0 +1,10 @@
+export d=/web/SSL
+echo "Certificate Name, e.g. mydomain.com?"
+read nm
+clear
+openssl genrsa -out $d/$nm.key.pem 1024
+openssl req -new -key $d/$nm.key.pem -out $d/$nm.csr.pem
+openssl x509 -req -in $d/$nm.csr.pem -signkey $d/$nm.key.pem -out $d/$nm.cert.pem
+rm $d/$nm.csr.pem
+clear
+echo "$d/$nm.cert.pem and $d/$nm.key.pem created successfully"

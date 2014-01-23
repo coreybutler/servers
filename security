@@ -18,8 +18,12 @@ done
 useradd -G admin $usr
 echo $pwd | passwd $usr --stdin
 
+echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+/etc/init.d/sshd restart
+
 clear
-echo "$usr created with admin privileges"
+echo "$usr created with admin privileges and granted SSH/sudo access."
+echo "SSH access removed for root user."
 echo ""
 echo "To create an admin user account, type useradd -G admin <login> (w/o the <>)"
 echo "To add an existing user to the admin group, type usermod -G admin <login>"

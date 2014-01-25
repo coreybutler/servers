@@ -15,7 +15,7 @@ while true; do
   fi
 done
 
-useradd -G admin $usr
+useradd -G admin -d /home/$usr $usr
 echo $pwd | passwd $usr --stdin
 
 echo "PermitRootLogin no" >> /etc/ssh/sshd_config

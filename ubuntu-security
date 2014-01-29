@@ -8,8 +8,8 @@ read -p "Username:" usr
 while true; do
   read -s -p "Password:" pwd
   read -s -p "Password Again:" cpwd
-  if [ "$pwd" == "$cpwd" ] then
-    exit;;
+  if [ "$pwd" == "$cpwd" ]; then
+    exit 0
   else
     echo "The passwords do not match."
   fi

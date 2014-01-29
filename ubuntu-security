@@ -5,7 +5,7 @@ clear
 echo "An initial user must be created."
 read -p "Username:" usr
 
-#while true; do
+while true; do
   read -p "Password:" pwd
   read -p "Password Again:" cpwd
   if [ "$pwd" == "$cpwd" ]; then
@@ -13,8 +13,8 @@ read -p "Username:" usr
   else
     echo "The passwords do not match."
   fi
-#done
-exit 0
+done
+
 useradd -G admin -md /home/$usr $usr
 echo $pwd | passwd $usr --stdin
 

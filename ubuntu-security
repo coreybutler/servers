@@ -6,7 +6,7 @@ echo "An initial user must be created."
 echo "Username:"
 read usr
 
-while true; do
+#while true; do
   echo "Password:"
   read pwd
   echo "Password Again:" 
@@ -16,7 +16,7 @@ while true; do
   else
     echo "The passwords do not match."
   fi
-done
+#done
 
 useradd -G admin -md /home/$usr $usr
 echo $pwd | passwd $usr --stdin

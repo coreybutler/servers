@@ -3,11 +3,14 @@ groupadd admin
 echo "%admin ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 clear
 echo "An initial user must be created."
-read -p "Username:" usr
+echo "Username:"
+read usr
 
 while true; do
-  read -p "Password:" pwd
-  read -p "Password Again:" cpwd
+  echo "Password:"
+  read pwd
+  echo "Password Again:" 
+  read cpwd
   if [ "$pwd" == "$cpwd" ]; then
     exit 0
   else

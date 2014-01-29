@@ -17,7 +17,7 @@ read usr
     echo "The passwords do not match."
   fi
 #done
-
+exit 0
 useradd -G admin -md /home/$usr $usr
 echo $pwd | passwd $usr --stdin
 

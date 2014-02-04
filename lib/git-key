@@ -55,7 +55,7 @@ while true; do
         read -p "Github Password: " pass
         clear
         echo "Adding SSH certificate to Github for $user..."
-        curl -X POST  -H "Content-Type: application/json" -d '{"title":"$(hostname) Server","key":"$keycontent"}' --user $user:$pass https://api.github.com/user/keys
+        curl -X POST -H "application/json" -d "{\"title\":\"$(hostname) Server\",\"key\":\"$keycontent\"}" -u $user:$pass https://api.github.com/user/keys
         clear
         break;;
     2 ) read -p "BitBucket Username: " user

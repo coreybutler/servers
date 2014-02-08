@@ -1,0 +1,7 @@
+# Disable SELinux
+setenforce Permissive
+sudo yum -y install docker-io
+sudo systemctl enable docker
+clear
+echo "Docker Installation Complete: Starting..."
+sudo systemctl start docker

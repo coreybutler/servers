@@ -2,8 +2,8 @@
 
 # Make sure curl is available
 clear
-echo "Installing/updating curl if necessary..."
-yum install -y curl > /dev/null
+#echo "Installing/updating curl if necessary..."
+#yum install -y curl > /dev/null
 
 # Identify email account to associate with the key
 if [ $# -eq 0 ]

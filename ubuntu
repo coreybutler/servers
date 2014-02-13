@@ -43,7 +43,7 @@ echo "alias psmem10='ps auxf | sort -nr -k 4 | head -10'" >> /etc/bash.bashrc
 echo "alias pscpu='ps auxf | sort -nr -k 3'" >> /etc/bash.bashrc
 echo "alias pscpu10='ps auxf | sort -nr -k 3 | head -10'" >> /etc/bash.bashrc
 echo "alias cpuinfo='lscpu'" >> /etc/bash.bashrc
-echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bash.bashrc
+echo "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bash.bashrc
 
 clear
 echo "You may need to re-login to use the new aliases."

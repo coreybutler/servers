@@ -1,0 +1,49 @@
+###################################################
+# Ubuntu initialization script for fresh installs #
+###################################################
+
+# Update with required software
+apt-get update -y
+apt-get install -y git wget make openssl openssl-devel
+
+# Create common directories
+if [ ! -d "/usr/src/SOFTWARE" ]; then
+  mkdir /usr/src/SOFTWARE
+fi
+if [ ! -d "/usr/src/SCRIPTS" ]; then
+  mkdir /usr/src/SCRIPTS
+fi
+if [ ! -d "/BACKUP" ]; then
+  mkdir /BACKUP
+fi
+
+# Modify the startup script, add aliases and exports
+cp /etc/bash.bashrc /etc/bash.bashrc.original
+echo "alias soft='cd /usr/src/SOFTWARE'" >> /etc/bash.bashrc
+echo "alias ..='cd ../'" >> /etc/bash.bashrc
+echo "alias ...='cd ../../'" >> /etc/bash.bashrc
+echo "alias c='clear'" >> /etc/bash.bashrc
+echo "alias home='cd $HOME'" >> /etc/bash.bashrc
+echo "alias ssh='cd ~/.ssh'" >> /etc/bash.bashrc
+echo "alias ls='ls --color=auto'" >> /etc/bash.bashrc
+echo "alias grep='grep --color=auto'" >> /etc/bash.bashrc
+echo "alias egrep='egrep --color=auto'" >> /etc/bash.bashrc
+echo "alias fgrep='fgrep --color=auto'" >> /etc/bash.bashrc
+echo "alias ports='netstat -tulanp'" >> /etc/bash.bashrc
+echo "alias rm='rm -I --preserve-root'" >> /etc/bash.bashrc
+echo "alias mv='mv -i'" >> /etc/bash.bashrc
+echo "alias cp='cp -i'" >> /etc/bash.bashrc
+echo "alias ln='ln -i'" >> /etc/bash.bashrc
+echo "alias chown='chown --preserve-root'" >> /etc/bash.bashrc
+echo "alias chmod='chmod --preserve-root'" >> /etc/bash.bashrc
+echo "alias chgrp='chgrp --preserve-root'" >> /etc/bash.bashrc
+echo "alias meminfo='free -m -l -t'" >> /etc/bash.bashrc
+echo "alias psmem='ps auxf | sort -nr -k 4'" >> /etc/bash.bashrc
+echo "alias psmem10='ps auxf | sort -nr -k 4 | head -10'" >> /etc/bash.bashrc
+echo "alias pscpu='ps auxf | sort -nr -k 3'" >> /etc/bash.bashrc
+echo "alias pscpu10='ps auxf | sort -nr -k 3 | head -10'" >> /etc/bash.bashrc
+echo "alias cpuinfo='lscpu'" >> /etc/bash.bashrc
+echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bash.bashrc
+
+clear
+echo "You may need to re-login to use the new aliases."

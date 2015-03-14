@@ -46,4 +46,5 @@ echo "alias cpuinfo='lscpu'" >> /etc/bashrc
 echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bashrc
 
 clear
-echo "You may need to re-login to use the new aliases."
+source /etc/bashrc
+#echo "You may need to re-login to use the new aliases."

@@ -1,0 +1,18 @@
+ The alias file contains shortcuts. There is also a .bashrc file containing
+# functions for modifying this file from the command line. The two primary
+# methods include "mkalias" and "rmalias", which will create/remove an alias
+# immediately. See the ~/.bashrc file for detail.
+
+# Realias
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Shortcuts
+alias ws='cd ~/Workspace | pwd'
+alias aliases='nano ~/.bash_aliases'
+
+# Node
+alias npm='sudo npm'
+
+# Other Aliases

@@ -1,0 +1,82 @@
+ If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+PROFILE=~/.zshrc
+ALIASFILE=~/.bash_aliases
+
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
+
+# Colors
+# Normal Colors
+black='\e[0;30m'        # Black
+red='\e[0;31m'          # Red
+green='\e[0;32m'        # Green
+yellow='\e[0;33m'       # Yellow
+blue='\e[0;34m'         # Blue
+purple='\e[0;35m'       # Purple
+cyan='\e[0;36m'         # Cyan
+white='\e[0;37m'        # White
+
+# Bold
+bblack='\e[1;30m'       # Black
+bred='\e[1;31m'         # Red
+bgreen='\e[1;32m'       # Green
+byellow='\e[1;33m'      # Yellow
+bblue='\e[1;34m'        # Blue
+bpurple='\e[1;35m'      # Purple
+bcyan='\e[1;36m'        # Cyan
+bwhite='\e[1;37m'       # White
+
+# Background
+bgblack='\e[40m'       # Black
+bgred='\e[41m'         # Red
+bggreen='\e[42m'       # Green
+bgyellow='\e[43m'      # Yellow
+bgblue='\e[44m'        # Blue
+bgpurple='\e[45m'      # Purple
+bgcyan='\e[46m'        # Cyan
+bgwhite='\e[47m'       # White
+
+NC="\e[m"               # Color Reset
+
+# Functions
+mkalias()
+{
+  var=`echo $* | grep -o '^.*\=' | cut -d'=' -f 1`
+  cmd=`echo $* | grep -o '=.*$' | cut -d'=' -f 2`
+
+  # Make sure the alias doesn't already exist
+  line=`grep -n "alias $var=" $ALIASFILE | grep -o '^\([0-9]\+\)'`
+  if [ -z $line ]
+  then
+    echo "alias $var='$cmd'" >> $ALIASFILE
+    source $PROFILE
+    echo "$green$1 alias created.$nc"
+  else
+    echo "$red Cannot create alias. $var is already an alias.$nc"
+    echo " $byellow--> "`grep "alias $var=" $ALIASFILE`$nc
+  fi
+}
+
+rmalias()
+{
+  line=`grep -n "alias $1=" $ALIASFILE | grep -o '^\([0-9]\+\)'`
+
+  # Remove if the alias exists
+  if [ -z $line ]
+  then
+    echo $red$1 alias not found.$nc
+  else
+    b=`expr $line - 1`
+    e=`expr $line + 1`
+    top=`head -$b $ALIASFILE`
+    bottom=`tail +$e $ALIASFILE`
+    echo $top > ~/tempfile
+    echo $bottom >> ~/tempfile
+    mv ~/tempfile $ALIASFILE
+    source $PROFILE
+    echo "$bgreen$1 alias removed.$nc"
+  fi
+}

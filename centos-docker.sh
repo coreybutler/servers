@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "more"
 echo "yoyoyo"
 echo "testing2 $0"
 

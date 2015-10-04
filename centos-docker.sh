@@ -16,6 +16,16 @@ useradd -G admin $ME
 passwd --stdin $ME | $PWD
 mkdir /home/$ME/.ssh
 
+if [[ "$RSA" != "" ]]
+then
+  echo $RSA > /home/$ME/.ssh/authenticated_keys
+  chown -R $ME:$ME /home/$ME/.ssh
+  chmod 700 /home/$ME/.ssh
+  chmod 600 /home/$ME/.ssh/authenticated_keys
+else
+  echo "No SSH keys associated with $ME account (login via password only)"
+fi
+
 echo DONE
 
 # Update the system 

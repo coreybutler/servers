@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
 
-read -p "Username: " user
+echo "Username: "
+read user
 
 echo $user
 echo "exiting"

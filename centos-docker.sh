@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "yoyo"
+echo "yoyoyo"
 echo "testing2 $0"
 
 printf "Enter something: "
 read myvar < /dev/tty
 echo $myvar
 
-read -p "Username: " user
+read -p "Username: " user < /dev/tty
 
 echo $user
 echo "exiting"

@@ -2,7 +2,7 @@
 set -e
 
 echo "Username: "
-read user
+read -p user
 
 echo $user
 echo "exiting"

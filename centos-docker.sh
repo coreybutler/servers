@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "yo"
+echo "yoyo"
 echo "testing2 $0"
 
 printf "Enter something: "

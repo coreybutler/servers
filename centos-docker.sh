@@ -1,29 +1,28 @@
 #!/bin/bash
-echo "more"
-echo "yoyoyo"
-echo "testing2 $0"
 
-printf "Enter something: "
-read myvar < /dev/tty
-echo $myvar
+# Create a non-root user
+printf "Enter Username: "
+read ME < /dev/tty
+printf "Enter Password for $ME: "
+read PWD < /dev/tty
+clear
 
-read -p "Username: " user < /dev/tty
+printf "id_rsa.pub contents for $ME: "
+read RSA < /dev/tty
+clear
 
-echo $user
-echo "exiting"
-exit
+groupadd admin
+useradd -a $ME
+passwd --stdin $ME | $PWD
+usermod -aG admin $ME
+mkdir /home/$ME/.ssh
 
+echo DONE
 
-# export ME=$user
-
-# # Update the system 
+# Update the system 
 # yum update -y
 # yum install -y nano
  
-# # Add a non-root user
-# groupadd admin
-# useradd -a -G admin $ME
-# mkdir /home/$ME/.ssh
 
 
 ###################################################

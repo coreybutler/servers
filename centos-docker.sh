@@ -12,9 +12,8 @@ read RSA < /dev/tty
 clear
 
 groupadd admin
-useradd -a $ME
+useradd -G admin $ME
 passwd --stdin $ME | $PWD
-usermod -aG admin $ME
 mkdir /home/$ME/.ssh
 
 echo DONE

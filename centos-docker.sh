@@ -13,7 +13,8 @@ clear
 
 groupadd admin
 useradd -G admin $ME
-echo '$ME:$PWD' | chpasswd
+printf "Enter Password for $ME: "
+passwd $ME
 mkdir /home/$ME/.ssh
 
 if [[ "$RSA" != "" ]]

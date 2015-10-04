@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "yo"
-echo "testing $0 $1"
+echo "testing $0"
 
 printf "Enter something: "
 read myvar < /dev/tty

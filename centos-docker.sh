@@ -13,7 +13,7 @@ clear
 
 groupadd admin
 useradd -G admin $ME
-passwd --stdin $ME | $PWD
+passwd --stdin $ME < $PWD
 mkdir /home/$ME/.ssh
 
 if [[ "$RSA" != "" ]]

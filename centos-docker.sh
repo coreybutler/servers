@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+printf "Enter something: "
+read myvar
+echo $myvar
+
 read -p "Username: " user
 
 echo $user

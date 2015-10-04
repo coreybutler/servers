@@ -15,6 +15,7 @@ groupadd admin
 useradd -G admin $ME
 printf "Enter Password for $ME: "
 passwd $ME
+$PWD
 mkdir /home/$ME/.ssh
 
 if [[ "$RSA" != "" ]]

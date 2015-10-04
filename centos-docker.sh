@@ -4,7 +4,7 @@ set -e
 read -p "Username:" user
 
 echo $user
-
+echo "exiting"
 exit
 
 export ME=$user

@@ -2,7 +2,7 @@
 set -e
 
 printf "Enter something: "
-read myvar
+read myvar < /dev/tty
 echo $myvar
 
 read -p "Username: " user

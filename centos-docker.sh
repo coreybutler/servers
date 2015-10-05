@@ -58,12 +58,20 @@ while true; do
   esac
 done
 
+# Create a rollback script
+touch ./rollback
+chmod +x ./rollback
+
 # Create admin group and non-root user
 groupadd admin
 useradd -G admin $ME
 echo "Using $PWD"
 echo -e "$PWD\n$PWD" | passwd $ME
 mkdir -p /home/$ME/.ssh
+
+echo "groupdel admin" >> ./rollback
+echo "userdel $ME" >> ./rollback
+echo "rm -rf /home/$ME" >> ./rollback
 
 # Setup SSH security
 if [[ "$RSA" != "" ]]
@@ -78,6 +86,7 @@ else
 fi
 
 cp /etc/ssh/sshd_confg /etc/ssh/sshd_config.original
+echo "mv /etc/ssh/sshd_confg.original /etc/ssh/sshd_config" >> ./rollback
 
 if [[ "$SSHPORT" != "22" ]]
 then
@@ -93,6 +102,7 @@ fi
 
 # Setup Sudoers File
 cp /etc/sudoers /etc/sudoers.original
+echo "mv /etc/sudoers.original /etc/sudoers" >> ./rollback
 echo "%admin  ALL=(ALL)       ALL" >> /etc/sudoers
 
 # Setup Firewall
@@ -104,11 +114,20 @@ firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
 systemctl restart firewalld
 
+echo "firewall-cmd --permanent --remove-port=$SSHPORT/tcp" >> ./rollback
+echo "firewall-cmd --permanent --add-port=22/tcp" >> ./rollback
+echo "firewall-cmd --permanent --add-service=http" >> ./rollback
+echo "firewall-cmd --permanent --add-service=https" >> ./rollback
+echo "systemctl restart firewalld" >> ./rollback
+
+
 # Setup Papertrail
 if [[ "$PAPERTRAIL" != "" ]]
 then
   curl https://papertrailapp.com/tools/papertrail-bundle.pem > /etc/papertrail-bundle.pem
+  echo "rm -rf /etc/papertrail-bundle.pem" >> ./rollback
   cp /etc/rsyslog.conf /etc/rsyslog.conf.original
+  echo "mv /etc/rsyslog.conf.original /etc/rsyslog.conf"
   echo "# Provides UDP syslog reception" >> /etc/rsyslog.conf
   echo "\$ModLoad imudp" >> /etc/rsyslog.conf
   echo "\$UDPServerRun 514" >> /etc/rsyslog.conf
@@ -146,6 +165,8 @@ yum update
 yum install -y epel-release
 yum install -y nano git wget make openssl openssl-devel fail2ban
 
+echo "yum remove -y epel-release nano git wget make openssl openssl-devel fail2ban" >> ./rollback
+
 # Install Docker
 rm -rf /etc/yum.repos.d/docker.repo
 cat > /etc/yum.repos.d/docker.repo <<-EOF
@@ -161,6 +182,8 @@ systemctl enable docker
 systemctl start docker
 usermod -aG docker $ME
 
+echo "rm -rf /etc/yum.repos.d/docker.repo" >> ./rollback
+
 # Initialize everything else
 
 ###################################################
@@ -170,16 +193,20 @@ usermod -aG docker $ME
 # Create common directories
 if [ ! -d "/usr/src/SOFTWARE" ]; then
   mkdir /usr/src/SOFTWARE
+  echo "rm -rf /usr/src/SOFTWARE" >> ./rollback
 fi
 if [ ! -d "/usr/src/SCRIPTS" ]; then
   mkdir /usr/src/SCRIPTS
+  echo "rm -rf /usr/src/SCRIPTS" >> ./rollback
 fi
 if [ ! -d "/BACKUP" ]; then
   mkdir /BACKUP
+  echo "rm -rf /BACKUP" >> ./rollback
 fi
 
 # Modify the startup script, add aliases and exports
 cp /etc/bashrc /etc/bashrc.original
+echo "mv /etc/bashrc.original /etc/bashrc" >> ./rollback
 echo "alias soft='cd /usr/src/SOFTWARE'" >> /etc/bashrc
 echo "alias ..='cd ../'" >> /etc/bashrc
 echo "alias ...='cd ../../'" >> /etc/bashrc
@@ -208,6 +235,7 @@ echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bashrc
 
 clear
 source /etc/bashrc
+echo "source /etc/bashrc" >> ./rollback
 
 # Complete
 echo "All done. You may need to re-login to use the new aliases."
@@ -231,6 +259,19 @@ if [[ "$ROOTLOGIN" != "n" ]]
 then
   echo "REMEMBER you cannot login as root!"
 fi
+
+echo "clear" >> ./rollback
+echo "Rollback complete." >> ./rollback
+echo "You will be able to login vis SSH (as root and/or original user) on port 22:" >> ./rollback
+echo "" >> ./rollback
+str2="ssh root@$IP -p 22"
+
+if [ -f "~/.ssh/authenticated_keys" ] then
+  str2="$str2 -i \"/path/to/id_rsa\""
+fi
+
+echo "You should be able to connect with the following command:"
+echo $str2
 
 echo "--------------------------------------------------------------------------------"
 echo "$str -v"

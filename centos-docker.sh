@@ -98,6 +98,7 @@ echo "%admin  ALL=(ALL)       ALL" >> /etc/sudoers
 # Setup Firewall
 systemctl start firewalld
 firewall-cmd --permanent --add-service=ssh
+firewall-cmd --permanent --remove-port=22/tcp
 firewall-cmd --permanent --add-port=$SSHPORT/tcp
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https

@@ -13,7 +13,7 @@ printf "Enter Username: "
 read ME < /dev/tty
 printf "Enter Password for $ME: "
 read -s PWD < /dev/tty
-echo ""
+clear
 printf "id_rsa.pub contents for $ME: "
 read RSA < /dev/tty
 clear
@@ -26,7 +26,16 @@ fi
 echo "SSH Port: $SSHPORT"
 echo "Permit root login: $ROOTLOGIN"
 echo "New User: $ME"
-echo "Password: $PWD"
+
+size=$((${#PWD}-2))
+mask="${PWD:0:1}"
+for (( c=1; c<=$size; c++ ))
+do
+  mask="$mask*"
+done
+mask="$mask${PWD: -1}"
+
+echo "Password: $mask ($((${#PWD})) characters)"
 if [[ "$RSA" != "" ]]
 then
   echo "ID RSA: $RSA"

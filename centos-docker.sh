@@ -77,6 +77,8 @@ else
   echo "No SSH keys associated with $ME account (login via password only)."
 fi
 
+cp /etc/ssh/sshd_confg /etc/ssh/sshd_config.original
+
 if [[ "$SSHPORT" != "22" ]]
 then
   echo "Port $SSHPORT" >> /etc/ssh/sshd_config
@@ -90,10 +92,10 @@ else
 fi
 
 # Setup Sudoers File
+cp /etc/sudoers /etc/sudoers.original
 echo "%admin  ALL=(ALL)       ALL" >> /etc/sudoers
 
 # Setup Firewall
-
 systemctl start firewalld
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-port=$SSHPORT/tcp
@@ -105,6 +107,7 @@ systemctl restart firewalld
 if [[ "$PAPERTRAIL" != "" ]]
 then
   curl https://papertrailapp.com/tools/papertrail-bundle.pem > /etc/papertrail-bundle.pem
+  cp /etc/rsyslog.conf /etc/rsyslog.conf.original
   echo "# Provides UDP syslog reception" >> /etc/rsyslog.conf
   echo "\$ModLoad imudp" >> /etc/rsyslog.conf
   echo "\$UDPServerRun 514" >> /etc/rsyslog.conf
@@ -142,7 +145,8 @@ yum update
 yum install -y epel-release
 
 # Install Docker
-cat >/etc/yum.repos.d/docker.repo <<-EOF
+rm -rf /etc/yum.repos.d/docker.repo
+cat > /etc/yum.repos.d/docker.repo <<-EOF
 [dockerrepo]
 name=Docker Repository
 baseurl=https://yum.dockerproject.org/repo/main/centos/7

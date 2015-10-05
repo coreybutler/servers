@@ -138,12 +138,19 @@ then
 fi
 
 # Update the system
-yum-complete-transaction --cleanup-only
 yum update
 yum install -y epel-release
 
 # Install Docker
-curl -sSL https://get.docker.com/ | sh
+cat >/etc/yum.repos.d/docker.repo <<-EOF
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+yum install docker-engine
 systemctl enable docker
 systemctl start docker
 usermod -aG docker $ME

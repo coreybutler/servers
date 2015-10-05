@@ -63,7 +63,7 @@ groupadd admin
 useradd -G admin $ME
 echo "Using $PWD"
 echo -e "$PWD\n$PWD" | passwd $ME
-mkdir /home/$ME/.ssh
+mkdir -p /home/$ME/.ssh
 
 # Setup SSH security
 if [[ "$RSA" != "" ]]

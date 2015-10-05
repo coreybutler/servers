@@ -138,6 +138,7 @@ then
 fi
 
 # Update the system
+yum-complete-transaction --cleanup-only
 yum update
 yum install -y epel-release
 

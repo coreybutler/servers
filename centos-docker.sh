@@ -13,6 +13,7 @@ printf "Enter Username: "
 read ME < /dev/tty
 printf "Enter Password for $ME: "
 read -s PWD < /dev/tty
+echo ""
 printf "id_rsa.pub contents for $ME: "
 read RSA < /dev/tty
 clear

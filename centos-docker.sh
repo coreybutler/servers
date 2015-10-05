@@ -144,6 +144,7 @@ fi
 # Update the system
 yum update
 yum install -y epel-release
+yum install -y nano git wget make openssl openssl-devel fail2ban
 
 # Install Docker
 rm -rf /etc/yum.repos.d/docker.repo
@@ -207,8 +208,6 @@ echo -e "export PATH=:/usr/local/bin:/usr/src/SCRIPTS:\$PATH" >> /etc/bashrc
 
 clear
 source /etc/bashrc
-
-yum install -y nano git wget make openssl openssl-devel fail2ban
 
 # Complete
 echo "All done. You may need to re-login to use the new aliases."

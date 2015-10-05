@@ -106,15 +106,12 @@ if [[ "$PAPERTRAIL" != "" ]]
 then
   curl https://papertrailapp.com/tools/papertrail-bundle.pem > /etc/papertrail-bundle.pem
   echo "# Provides UDP syslog reception" >> /etc/rsyslog.conf
-  echo "$ModLoad imudp" >> /etc/rsyslog.conf
-  echo "$UDPServerRun 514" >> /etc/rsyslog.conf
+  echo "\$ModLoad imudp" >> /etc/rsyslog.conf
+  echo "\$UDPServerRun 514" >> /etc/rsyslog.conf
   echo "" >> /etc/rsyslog.conf
   echo "# Provides TCP syslog reception" >> /etc/rsyslog.conf
-  echo "$ModLoad imtcp" >> /etc/rsyslog.conf
-  echo "$InputTCPServerRun 514" >> /etc/rsyslog.conf
-  echo "# Provides UDP syslog reception" >> /etc/rsyslog.conf
-  echo "$ModLoad imudp" >> /etc/rsyslog.conf
-  echo "$UDPServerRun 514" >> /etc/rsyslog.conf
+  echo "\$ModLoad imtcp" >> /etc/rsyslog.conf
+  echo "\$InputTCPServerRun 514" >> /etc/rsyslog.conf
   echo "" >> /etc/rsyslog.conf
   echo "\$PreserveFQDN on" >> /etc/rsyslog.conf
   echo "" >> /etc/rsyslog.conf

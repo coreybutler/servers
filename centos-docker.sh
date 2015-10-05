@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Identify a secure SSH port
-printf "Which port should SSH run on? Default is 22."
+printf "Which port should SSH run on (Default is 22)? "
 read SSHPORT < /dev/tty
-printf "Allow root login? (y/n)"
+printf "Allow root login (y/n)? "
 read ROOTLOGIN < /dev/tty
-printf "Papertrail URL (optional):"
+printf "Papertrail URL (optional): "
 read PAPERTRAIL < /dev/tty
 
 # Create a non-root user

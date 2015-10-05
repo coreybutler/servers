@@ -271,7 +271,7 @@ if [ -f "~/.ssh/authenticated_keys" ] then
 fi
 
 echo "You should be able to connect with the following command:"
-echo $str2
+echo "$str2"
 
 echo "--------------------------------------------------------------------------------"
 echo "$str -v"

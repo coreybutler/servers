@@ -59,6 +59,10 @@ while true; do
 done
 
 # Create a rollback script
+if [ -f "./rollback" ]
+then
+  rm -rf ./rollback
+fi
 touch ./rollback
 chmod +x ./rollback
 

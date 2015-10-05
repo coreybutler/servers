@@ -161,7 +161,7 @@ then
 fi
 
 # Update the system
-yum update
+yum update --skip-broken -y
 yum install -y epel-release
 yum install -y nano git wget make openssl openssl-devel fail2ban
 

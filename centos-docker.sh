@@ -266,7 +266,7 @@ echo "You will be able to login vis SSH (as root and/or original user) on port 2
 echo "" >> ./rollback
 str2="ssh root@$IP -p 22"
 
-if [ -f "~/.ssh/authenticated_keys" ] then
+if [ -f "/root/.ssh/authenticated_keys" ] then
   str2="$str2 -i \"/path/to/id_rsa\""
 fi
 

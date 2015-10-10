@@ -80,10 +80,10 @@ echo "rm -rf /home/$ME" >> ./rollback
 # Setup SSH security
 if [[ "$RSA" != "" ]]
 then
-  echo $RSA > /home/$ME/.ssh/authenticated_keys
+  echo $RSA > /home/$ME/.ssh/authorized_keys
   chown -R $ME:$ME /home/$ME/.ssh
   chmod 700 /home/$ME/.ssh
-  chmod 600 /home/$ME/.ssh/authenticated_keys
+  chmod 600 /home/$ME/.ssh/authorized_keys
   echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 else
   echo "No SSH keys associated with $ME account (login via password only)."
@@ -270,7 +270,7 @@ echo "You will be able to login vis SSH (as root and/or original user) on port 2
 echo "" >> ./rollback
 str2="ssh root@$IP -p 22"
 
-if [ -f "/root/.ssh/authenticated_keys" ] then
+if [ -f "/root/.ssh/authorized_keys" ] then
   str2="$str2 -i \"/path/to/id_rsa\""
 fi
 
